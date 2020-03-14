@@ -1,0 +1,27 @@
+use Person_Pet
+
+CREATE LOGIN Y_GARCIA
+WITH PASSWORD = 'cookie';
+
+CREATE USER Y_GARCIA_PERSON_PET
+FOR LOGIN Y_GARCIA;
+
+GRANT SELECT ON Person TO Y_GARCIA_PERSON_PET;
+GRANT SELECT ON Pet TO Y_GARCIA_PERSON_PET;
+GRANT SELECT ON PET_TYPE TO Y_GARCIA_PERSON_PET;
+
+------------------------------------
+
+USE Person_Pet
+
+SELECT person.first_name, person.last_name, pet.name, pet_type.type
+FROM person
+LEFT JOIN pet
+ON person.person_id = pet.person_id
+LEFT JOIN Pet_Type
+ON pet.pet_type_id = pet_type.pet_type_id;
+
+DELETE FROM PET
+
+--
+
